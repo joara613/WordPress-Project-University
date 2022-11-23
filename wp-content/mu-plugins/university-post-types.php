@@ -60,6 +60,10 @@ function university_post_types() {
 	register_post_type('note', array(
 		// New Editor
 		'show_in_rest' => true,
+		// Members Role
+		'capability_type' => 'note',
+		// in order to require permissions
+		'map_meta_cap' => true,
 		'supports' => array('title','editor'),
 		'public'=> false,
 		// show it in admin dashboard ui

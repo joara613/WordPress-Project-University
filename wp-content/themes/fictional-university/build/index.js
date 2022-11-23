@@ -2218,7 +2218,7 @@ class MyNotes {
     const newPost = {
       title: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title").val(),
       content: jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val(),
-      status: "publish"
+      status: "private"
     };
     jquery__WEBPACK_IMPORTED_MODULE_0___default().ajax({
       beforeSend: xhr => {
@@ -2228,7 +2228,8 @@ class MyNotes {
       type: "POST",
       data: newPost,
       success: response => {
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title .new-note-body").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-title").val("");
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".new-note-body").val("");
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(`
 					<li data-id="${response.id}"> 
 						<input readonly class="note-title-field" value="${response.title.raw}">

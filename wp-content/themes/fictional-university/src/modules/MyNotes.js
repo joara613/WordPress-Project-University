@@ -65,7 +65,7 @@ class MyNotes {
 		const newPost = {
 			title: $(".new-note-title").val(),
 			content: $(".new-note-body").val(),
-			status: "publish",
+			status: "private",
 		};
 
 		$.ajax({
@@ -76,7 +76,8 @@ class MyNotes {
 			type: "POST",
 			data: newPost,
 			success: (response) => {
-				$(".new-note-title .new-note-body").val("");
+				$(".new-note-title").val("");
+				$(".new-note-body").val("");
 				$(`
 					<li data-id="${response.id}"> 
 						<input readonly class="note-title-field" value="${response.title.raw}">

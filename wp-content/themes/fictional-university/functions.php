@@ -143,4 +143,29 @@ function ourLoginCSS(){
 
 }
 
+// Force note posts to be private
+add_filter('wp_insert_post_data','makeNotePrivate');
 
+function makeNotePrivate($data){
+	if($data['post_type']=='note'){
+		$data['post_content'] = sanitize_textarea_field($data['post_content']);
+		$data['post_title'] = sanitize_text_field($data['post_title']);
+	}
+	if($data['post_type'] == 'note' AND $data['post_status'] !='trash'){
+		$data['post_status'] = "private";
+	}
+	
+	return $data;
+}
+
+// remove "Private: " from titles
+// Use a regex to allow 'Private: ' in title if user manually entered it.
+function remove_private_prefix($title) {
+  if (get_post_status() == 'private') {
+    $regTitle = preg_replace('/^Private: /', '', $title);
+    return $regTitle;
+  } else {
+    return $title;
+  }
+}
+add_filter('the_title', 'remove_private_prefix');
