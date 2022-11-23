@@ -49,7 +49,8 @@ function university_files(){
 	wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
 
 	wp_localize_script('main_university_js', 'universityData',array(
-		'root_url' => get_site_url()
+		'root_url' => get_site_url(),
+		'nonce' => wp_create_nonce('wp_rest')
 	));
 }
 
@@ -92,4 +93,54 @@ function university_adjust_queries($query){
 }
 
 add_action('pre_get_posts', 'university_adjust_queries');
+
+// Redirect subscriber accounts out of admin and onto homepage
+add_action('admin_init', 'redirectSubsToFrontend');
+
+function redirectSubsToFrontend(){
+	$currentUser = wp_get_current_user();
+	if(count($currentUser -> roles) == 1 AND $currentUser -> roles[0] == 'subscriber'){
+		wp_redirect(site_url('/'));
+		exit;
+	}
+}
+
+add_action('wp_loaded', 'noSubsAdminBar');
+
+function noSubsAdminBar(){
+	$currentUser = wp_get_current_user();
+	if(count($currentUser -> roles) == 1 AND $currentUser -> roles[0] == 'subscriber'){
+		show_admin_bar(false);
+	}
+}
+
+
+// Customize Login Screen
+
+add_filter('login_headerurl', 'ourHeaderUrl');
+
+function ourHeaderUrl() {
+	return esc_url(site_url('/'));
+}
+
+// Customize Login Screen Logo
+add_filter('login_headertext', 'ourLoginText');
+
+function ourLoginText()
+{
+  return get_bloginfo('name');
+}
+ 
+// Use custom CSS on Login page
+
+add_action('login_enqueue_scripts', 'ourLoginCSS');
+
+function ourLoginCSS(){
+	wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
+	wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
+	wp_enqueue_style('font_awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+	wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
+
+}
+
 

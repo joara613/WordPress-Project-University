@@ -182,7 +182,7 @@ class Search {
 		this.searchField.value = "";
 		setTimeout(() => this.searchField.focus(), 301);
 		this.isOverlayOpen = true;
-		// return false;
+		return false;
 	}
 	closeOverlay() {
 		this.searchOverlay.classList.remove("search-overlay--active");

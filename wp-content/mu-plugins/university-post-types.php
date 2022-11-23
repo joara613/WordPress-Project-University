@@ -4,6 +4,10 @@ function university_post_types() {
 	// Event Post Type
 	register_post_type('event', array(
 		'supports' => array('title','editor','excerpt'),
+		// Members Role
+		'capability_type' => 'event',
+		// in order to require permissions
+		'map_meta_cap' => true,
 		'rewrite' => array('slug' => 'events'),
 		'has_archive' => true,
 		'public'=> true,
@@ -51,8 +55,27 @@ function university_post_types() {
 		),
 		'menu_icon' => 'dashicons-welcome-learn-more'
 	));
+
+		// Note Post Type
+	register_post_type('note', array(
+		// New Editor
+		'show_in_rest' => true,
+		'supports' => array('title','editor'),
+		'public'=> false,
+		// show it in admin dashboard ui
+		'show_ui' => true,
+		'labels' => array(
+			'name' => 'Notes',
+			'add_new_item' => 'Add New Note',
+			'edit_item' => 'Edit Note',
+			'all_items' => 'All Notes',
+			'sigular_name' => 'Note'
+		),
+		'menu_icon' => 'dashicons-welcome-write-blog'
+	));
+	
 }
 
-add_action('init', 'university_post_types');
+	add_action('init', 'university_post_types');
 
 ?>
