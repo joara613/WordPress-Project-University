@@ -1,5 +1,5 @@
 // import $ from "jquery";
-import axios from "axios";
+// import axios from "axios";
 
 class Search {
 	// 1. describe and create/initiate our object
