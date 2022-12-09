@@ -1,6 +1,7 @@
 <?php
 
 require get_theme_file_path('/include/search-route.php');
+require get_theme_file_path('/include/like-route.php');
 
 // when we use REST API, add new property in the response data.
 function university_custom_rest(){
@@ -177,3 +178,10 @@ function remove_private_prefix($title) {
   }
 }
 add_filter('the_title', 'remove_private_prefix');
+
+add_filter('ai1wm_exclude_content_from_export','ignoreCertainFiles');
+
+function ignoreCertainFiles($exclude_filters){
+	$exclude_filters[] = 'themes/fictional-university/node_modules';
+	return $exclude_filters;
+}

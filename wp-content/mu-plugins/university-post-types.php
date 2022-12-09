@@ -78,6 +78,37 @@ function university_post_types() {
 		'menu_icon' => 'dashicons-welcome-write-blog'
 	));
 	
+	// Like Post Type
+	register_post_type('like', array(
+		'supports' => array('title'),
+		'public'=> false,
+		// show it in admin dashboard ui
+		'show_ui' => true,
+		'labels' => array(
+			'name' => 'Likes',
+			'add_new_item' => 'Add New Like',
+			'edit_item' => 'Edit Like',
+			'all_items' => 'All Likes',
+			'sigular_name' => 'Like'
+		),
+		'menu_icon' => 'dashicons-heart'
+	));
+
+		// Slide Post Type
+	register_post_type('slideshow', array(
+		'supports' => array('title'),
+		'public'=> false,
+		// show it in admin dashboard ui
+		'show_ui' => true,
+		'labels' => array(
+			'name' => 'slideshow',
+			'add_new_item' => 'Add New slide',
+			'edit_item' => 'Edit slide',
+			'all_items' => 'All slides',
+			'sigular_name' => 'slide'
+		),
+		'menu_icon' => 'dashicons-format-gallery'
+	));
 }
 
 	add_action('init', 'university_post_types');
