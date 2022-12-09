@@ -16163,62 +16163,35 @@ __webpack_require__.r(__webpack_exports__);
 
 // wp itserlf is going to add something called wp to the browser's global scope.
 wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
-  title: "Are you Paying Attention?",
-  icon: "smiley",
-  category: "common",
-  attributes: {
-    question: {
-      type: "string"
-    },
-    answers: {
-      type: "array",
-      default: [""]
-    },
-    correctAnswer: {
-      type: "number",
-      default: undefined
-    },
-    bgColor: {
-      type: "string",
-      default: "#EBEBEB"
-    },
-    theAlignment: {
-      type: "string",
-      default: "left"
-    }
-  },
-  description: "Give your audience a chance to prove their comprehension.",
-  example: {
-    attributes: {
-      question: "What is my name?",
-      correctAnswer: 3,
-      answers: ["Meowsalot", "Barksalot", "Purrsloud"],
-      theAlignment: "center",
-      bgColor: "#CFE8F1"
-    }
-  },
+  // title: "Are you Paying Attention?",
+  // icon: "smiley",
+  // category: "common",
+  // attributes: {
+  // 	question: { type: "string" },
+  // 	answers: { type: "array", default: [""] },
+  // 	correctAnswer: { type: "number", default: undefined },
+  // 	bgColor: { type: "string", default: "#EBEBEB" },
+  // 	theAlignment: { type: "string", default: "left" },
+  // },
+  // description: "Give your audience a chance to prove their comprehension.",
+  // example: {
+  // 	attributes: {
+  // 		question: "What is my name?",
+  // 		correctAnswer: 3,
+  // 		answers: ["Meowsalot", "Barksalot", "Purrsloud"],
+  // 		theAlignment: "center",
+  // 		bgColor: "#CFE8F1",
+  // 	},
+  // },
   edit: EditComponent,
   save: function (props) {
     return null;
-    // return (
-    // 	<p>Today the sky is {props.attributes.skyColor} and the grass is {props.attributes.grassColor}.</p>
-    // );
   }
-  // deprecated: [{
-  // 		attributes: {
-  // 			skyColor: { type: "string" },
-  // 			grassColor: { type: "string" },
-  // 		},
-  // 		save: function (props) {
-  // 			return (
-  // 				<p>Today the sky is {props.attributes.skyColor} and the grass is {props.attributes.grassColor}.</p>
-  // 			);
-  // 		},
-  // 	}],
 });
 
 // In React function name starts with UpperCase
 function EditComponent(props) {
+  // As adopting block.json and wp default wrapping element is gone, add blockProps
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: "paying-attention-edit-block",
     style: {

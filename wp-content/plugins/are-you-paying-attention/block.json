@@ -3,8 +3,27 @@
 	"apiVersion": 2,
 	"name": "ourplugin/are-you-paying-attention",
 	"title": "Are You Paying Attention",
+	"category": "common",
+	"icon": "smiley",
+	"description": "Give your audience a chance to prove their comprehension.",
+	"attributes": {
+		"question": { "type": "string" },
+		"answers": { "type": "array", "default": [""] },
+		"correctAnswer": { "type": "number", "default": null },
+		"bgColor": { "type": "string", "default": "#EBEBEB" },
+		"theAlignment": { "type": "string", "default": "left" }
+	},
+	"example": {
+		"attributes": {
+			"question": "What is my name?",
+			"correctAnswer": 3,
+			"answers": ["Meowsalot", "Barksalot", "Purrsloud"],
+			"theAlignment": "center",
+			"bgColor": "#CFE8F1"
+		}
+	},
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
-	"script": "file:./build/frontend.js",
-	"style": ["file:./build/frontend.css", "example-shared-style"]
+	"viewScript": "file:./build/frontend.js",
+	"style": "file:./build/frontend.css"
 }
